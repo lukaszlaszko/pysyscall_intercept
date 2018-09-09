@@ -1,0 +1,25 @@
+version: 2
+jobs:
+  build:
+    docker:
+    - image: lukaszlaszko/linux_build_tools:ubuntu_extended
+    steps:
+    - checkout
+    - run:
+        name: configure
+        command: |
+          mkdir bin_debug
+          cd bin_debug
+          cmake -DCMAKE_BUILD_TYPE=Debug ..
+    - run:
+        name: build
+        command: |
+          mkdir bin_debug
+          cd bin_debug
+          cmake --build . --target all
+    - run:
+        name: test
+        command: |
+          pip install -r requirements.txt
+          cd bin_debug
+          ctest --verbose
