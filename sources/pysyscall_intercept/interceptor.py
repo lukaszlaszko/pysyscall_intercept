@@ -3,7 +3,7 @@ from signal import getsignal, signal, SIGTRAP
 
 
 @contextmanager
-def block_signals(signals):
+def block_sigtrap():
     def empty_handler(signo, frame):
         pass
 
@@ -15,5 +15,10 @@ def block_signals(signals):
         signal(SIGTRAP, handler)
 
 
-with block_signals({SIGTRAP}):
+with block_sigtrap():
     from _interceptor import *
+
+
+
+
+
