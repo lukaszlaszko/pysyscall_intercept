@@ -13,13 +13,13 @@ jobs:
     - run:
         name: Configure
         command: |
-          mkdir bin_debug
+          rm -rf bin_debug && mkdir bin_debug
           cd bin_debug
           cmake -DCMAKE_BUILD_TYPE=Debug ..
     - run:
         name: Build
         command: |
-          rm -rf bin_debug && mkdir bin_debug
+          mkdir bin_debug
           cd bin_debug
           cmake --build . --target all
     - run:
