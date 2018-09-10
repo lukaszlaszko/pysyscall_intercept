@@ -1,0 +1,30 @@
+version: 2
+jobs:
+  build:
+    docker:
+    - image: lukaszlaszko/linux_build_tools:ubuntu_18.04
+    steps:
+    - checkout
+    - run:
+          name: "Pull Submodules"
+          command: |
+            git submodule init
+            git submodule update --remote
+    - run:
+        name: Configure
+        command: |
+          rm -rf bin_debug && mkdir bin_debug
+          cd bin_debug
+          cmake -DCMAKE_BUILD_TYPE=Debug ..
+    - run:
+        name: Build
+        command: |
+          cd bin_debug
+          cmake --build . --target all
+    - run:
+        name: Test
+        command: |
+          cd bin_debug
+          cmake --build . --target install-dependencies
+          ctest --verbose
+          
