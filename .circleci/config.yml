@@ -20,6 +20,6 @@ jobs:
     - run:
         name: test
         command: |
-          pip install -r requirements.txt
           cd bin_debug
+          cmake --build . --target install-dependencies
           ctest --verbose
