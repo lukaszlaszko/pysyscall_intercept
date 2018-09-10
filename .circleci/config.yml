@@ -19,7 +19,7 @@ jobs:
     - run:
         name: Build
         command: |
-          mkdir bin_debug
+          rm -rf bin_debug && mkdir bin_debug
           cd bin_debug
           cmake --build . --target all
     - run:
