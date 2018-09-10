@@ -6,19 +6,24 @@ jobs:
     steps:
     - checkout
     - run:
-        name: configure
+          name: "Pull Submodules"
+          command: |
+            git submodule init
+            git submodule update --remote
+    - run:
+        name: Configure
         command: |
           mkdir bin_debug
           cd bin_debug
           cmake -DCMAKE_BUILD_TYPE=Debug ..
     - run:
-        name: build
+        name: Build
         command: |
           mkdir bin_debug
           cd bin_debug
           cmake --build . --target all
     - run:
-        name: test
+        name: Test
         command: |
           pip install -r requirements.txt
           cd bin_debug
