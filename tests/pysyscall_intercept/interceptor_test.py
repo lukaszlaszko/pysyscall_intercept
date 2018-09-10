@@ -1,9 +1,5 @@
 from hamcrest import *
-from pysyscall_intercept import SysCallInterceptor
-
-
-SYS_WRITE = 1
-SYS_OPEN = 2
+from pysyscall_intercept import SysCallInterceptor, SYS_WRITE, SYS_OPEN
 
 
 def test_intercept__no_return():
