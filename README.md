@@ -31,4 +31,4 @@ return value of the system call.
 
 ## Limitations
 
-Currently only CPython on Linux is supported. 
+Currently only CPython on Linux are supported. 

@@ -3,7 +3,7 @@ add_test(NAME run-tests
 
 set_property(TEST run-tests
         PROPERTY
-        ENVIRONMENT "PYTHONPATH=$ENV{PYTHONPATH}:${CMAKE_CURRENT_SOURCE_DIR}:${CMAKE_SOURCE_DIR}/sources:${CMAKE_BINARY_DIR}/sources")
+        ENVIRONMENT "PYTHONPATH=$ENV{PYTHONPATH}:${CMAKE_CURRENT_SOURCE_DIR}/package:${CMAKE_SOURCE_DIR}/sources/package:${CMAKE_BINARY_DIR}/sources/package")
 set_property(TEST run-tests
         APPEND PROPERTY
         ENVIRONMENT "BINARY_DIR=${CMAKE_BINARY_DIR}")

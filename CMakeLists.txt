@@ -4,6 +4,9 @@ project(pysyscall_intercept)
 set(PYTHON_VERSION 3 CACHE STRING "Target version of python")
 message(STATUS "Requested python version: ${PYTHON_VERSION}")
 
+set(RELEASE_VERSION unknown CACHE STRING "Target release version")
+message(STATUS "Release version: ${RELEASE_VERSION}")
+
 # register modules
 include(CTest)
 include(ExternalProject)
