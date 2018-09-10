@@ -30,3 +30,6 @@ add_custom_target(pack-wheel
 
 add_dependencies(pack-wheel
         ${modules})
+
+add_custom_target(upload-wheel
+        COMMAND ${PYTHON_EXECUTABLE} -m twine --repository-url $ENV{PYPI_URL} -u $ENV{PYPI_USERNAME} -p $ENV{PYPI_PASSWORD} ${CMAKE_CURRENT_BINARY_DIR}/dist/*)
