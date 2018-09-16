@@ -67,14 +67,48 @@ class CMakeBuild(build_ext):
                                           for package in self.distribution.packages}
 
 
+class PackageInfo(object):
+    def __init__(self):
+        here, _ = os.path.split(__file__)
+        filename = os.path.join(here, 'PKG-INFO')
+
+        with open(filename, 'r') as pkg_info:
+            self.__fields = dict()
+            for line in pkg_info:
+                key, value = line.split(':', maxsplit=1) # type: (str, str)
+                self.__fields[key.strip()] = value.strip()
+
+    @property
+    def version(self):
+        return self.__fields['Version']
+
+    @property
+    def author(self):
+        return self.__fields['Author']
+
+    @property
+    def author_email(self):
+        return self.__fields['Author-email']
+
+    @property
+    def license(self):
+        return self.__fields['License']
+
+
+info = PackageInfo()
 setup(
     name='pysyscall_intercept',
-    version='0.0.1',
-    author='Lukasz Laszko',
-    author_email='lukaszlaszko@gmail.com',
+    version=info.version,
+    author=info.author,
+    author_email=info.author_email,
+    license=info.license,
     description='Python bindings for syscall_intercept',
     long_description='',
     ext_modules=[CMakeExtension('pysyscall_intercept')],
     cmdclass=dict(build_ext=CMakeBuild),
     zip_safe=False,
+    python_requires='>=3.6.*',
+    install_requires=[
+        'setuptools >= 40.0'
+    ],
 )
