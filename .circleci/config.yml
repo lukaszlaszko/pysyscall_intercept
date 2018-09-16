@@ -47,4 +47,7 @@ jobs:
           else
             echo 'Branch name "${CIRCLE_TAG}" doesnt match "${VERSION}". Skipping pip upload.'
           fi
+        filters:
+          tags:
+            only: /^(\d+\.)?(\d+\.)?(\*|\d+)/
 
