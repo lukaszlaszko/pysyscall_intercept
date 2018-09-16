@@ -37,10 +37,25 @@ else ()
     message(FATAL_ERROR "Python dev libs not found!")
 endif ()
 
-#Setup CMake to run tests
+# setup CMake to run tests
 enable_testing()
 
 # include subdirectories
 add_subdirectory(external)
 add_subdirectory(sources)
 add_subdirectory(tests)
+
+# define package build targets
+add_custom_target(build-package
+        COMMAND
+            tar -cvf ${CMAKE_BINARY_DIR}/pysyscall_intercept.tar
+                sources
+                external
+                tests
+                CMakeLists.txt
+                LICENSE
+                README.md
+                setup.py
+                PKG-INFO
+        COMMAND gzip ${CMAKE_BINARY_DIR}/pysyscall_intercept.tar
+        WORKING_DIRECTORY ${CMAKE_SOURCE_DIR})

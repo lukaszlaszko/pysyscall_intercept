@@ -34,10 +34,11 @@ jobs:
           ctest --verbose
     - deploy:
         command: |
-          tar -cvf pysyscall_intercept.tar sources external tests CMakeLists.txt LICENSE README.md setup.py PKG-INFO
-          gzip pysyscall_intercept.tar
-
           VERSION=$(python3.6 setup.py --version)
+
+          cd bin_debug
+          cmake --build . --target build-package
+
           if [ "${CIRCLE_TAG}" == "${VERSION}" ]; then
             PYPI_URL=${PYPI_TEST_URL}
             PYPI_USERNAME=${PYPI_TEST_USERNAME}
