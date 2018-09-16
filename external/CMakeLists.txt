@@ -15,10 +15,10 @@ ExternalProject_Add(syscall_intercept
         BUILD_COMMAND ${CMAKE_COMMAND} --build .
         INSTALL_COMMAND ""
         BUILD_BYPRODUCTS
-        "${CMAKE_CURRENT_BINARY_DIR}/syscall_intercept-prefix/src/syscall_intercept-build/libsyscall_intercept.so")
+        "${CMAKE_CURRENT_BINARY_DIR}/syscall_intercept-prefix/src/syscall_intercept-build/libsyscall_intercept.a")
 
 ExternalProject_Get_Property(syscall_intercept SOURCE_DIR)
 set(SYSCALL_INTERCEPT_INCLUDE_DIRS ${SOURCE_DIR}/include PARENT_SCOPE)
 
 ExternalProject_Get_Property(syscall_intercept BINARY_DIR)
-set(SYSCALL_INTERCEPT_LIBRARIES "${BINARY_DIR}/libsyscall_intercept.so" PARENT_SCOPE)
+set(SYSCALL_INTERCEPT_LIBRARIES "${BINARY_DIR}/libsyscall_intercept.a" PARENT_SCOPE)

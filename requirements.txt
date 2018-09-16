@@ -1,3 +1,4 @@
-pytest
-PyHamcrest
-twine
+pytest==3.8.0
+PyHamcrest==1.9.0
+cmake>=3.7
+capstone==3.0.5

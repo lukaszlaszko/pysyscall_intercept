@@ -12,7 +12,7 @@ include(CTest)
 include(ExternalProject)
 
 set(CMAKE_CXX_STANDARD 14)
-add_definitions(-Wno-unknown-attributes)
+add_definitions(-Wno-unknown-attributes -fvisibility=hidden)
 
 if(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
     set(CMAKE_EXE_LINKER_FLAGS  "${CMAKE_EXE_LINKER_FLAGS} -pthread")

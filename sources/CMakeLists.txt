@@ -16,17 +16,11 @@ foreach(module_file ${modules_SRC})
             ${PYTHON_LIBRARIES}
             ${SYSCALL_INTERCEPT_LIBRARIES}
             ${CMAKE_THREAD_LIBS_INIT}
-            ${RT_LIBRARY})
+            ${RT_LIBRARY}
+            capstone)
 
     add_dependencies(${name_without_extension}
             syscall_intercept)
 
     list(APPEND modules ${name_without_extension})
 endforeach()
-
-# build wheel package
-add_custom_target(pack-wheel
-        COMMAND ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/setup.py bdist_wheel --version ${RELEASE_VERSION} --source-dir=${CMAKE_SOURCE_DIR}/src/package --binary-dir ${CMAKE_BINARY_DIR}/src/package)
-
-add_dependencies(pack-wheel
-        ${modules})

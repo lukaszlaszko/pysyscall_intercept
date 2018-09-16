@@ -15,7 +15,7 @@ jobs:
         command: |
           rm -rf bin_debug && mkdir bin_debug
           cd bin_debug
-          cmake -DCMAKE_BUILD_TYPE=Debug ..
+          cmake -DCMAKE_BUILD_TYPE=Debug -DRELEASE_VERSION=0.0.0 ..
     - run:
         name: Build
         command: |
@@ -29,12 +29,13 @@ jobs:
           ctest --verbose
     - deploy:
         command: |
-          cd bin_debug/sources
-          if [ "${CIRCLE_BRANCH}" == "master" ]; then
+          cd bin_debug
+          cmake --build . --target pack-wheel
+          #if [ "${CIRCLE_BRANCH}" == "master" ]; then
             PYPI_URL=${PYPI_TEST_URL}
             PYPI_USERNAME=${PYPI_TEST_USERNAME}
             PYPI_PASSWORD=${PYPI_TEST_PASSWORD}
 
-            twine upload --repository-url https://test.pypi.org/legacy/ -u ${PYPI_TEST_USERNAME} -p ${PYPI_TEST_PASSWORD} dist/*
-          fi
+            twine upload --repository-url https://test.pypi.org/legacy/ -u ${PYPI_TEST_USERNAME} -p ${PYPI_TEST_PASSWORD} sources/dist/*
+          #fi
 
