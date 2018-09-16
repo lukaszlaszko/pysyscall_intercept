@@ -12,7 +12,8 @@ def block_sigtrap():
     try:
         yield
     finally:
-        signal(SIGTRAP, handler)
+        #signal(SIGTRAP, handler)
+        pass
 
 
 with block_sigtrap():
