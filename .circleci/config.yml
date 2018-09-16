@@ -29,13 +29,13 @@ jobs:
           ctest --verbose
     - deploy:
         command: |
-          tar -cvf pysyscall_interceptor.tar sources external tests CMakeLists.txt LICENSE README.md setup.py
-          bzip2 pysyscall_interceptor.tar
+          tar -cvf pysyscall_intercept.tar sources external tests CMakeLists.txt LICENSE README.md setup.py
+          bzip2 pysyscall_intercept.tar
           #if [ "${CIRCLE_BRANCH}" == "master" ]; then
             PYPI_URL=${PYPI_TEST_URL}
             PYPI_USERNAME=${PYPI_TEST_USERNAME}
             PYPI_PASSWORD=${PYPI_TEST_PASSWORD}
 
-            twine upload --repository-url https://test.pypi.org/legacy/ -u ${PYPI_TEST_USERNAME} -p ${PYPI_TEST_PASSWORD} pysyscall_interceptor.tar.bzip2
+            twine upload --repository-url https://test.pypi.org/legacy/ -u ${PYPI_TEST_USERNAME} -p ${PYPI_TEST_PASSWORD} pysyscall_intercept.tar.bz2
           #fi
 
