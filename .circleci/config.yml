@@ -22,6 +22,11 @@ jobs:
           cd bin_debug
           cmake --build . --target all
     - run:
+        name: "Install dependencies"
+        command: |
+          cd bin_debug
+          cmake --build . --target install-dependencies
+    - run:
         name: Test
         command: |
           cd bin_debug
@@ -29,7 +34,7 @@ jobs:
           ctest --verbose
     - deploy:
         command: |
-          tar -cvf pysyscall_intercept.tar sources external tests CMakeLists.txt LICENSE README.md setup.py
+          tar -cvf pysyscall_intercept.tar sources external tests CMakeLists.txt LICENSE README.md setup.py PKG-INFO
           bzip2 pysyscall_intercept.tar
           #if [ "${CIRCLE_BRANCH}" == "master" ]; then
             PYPI_URL=${PYPI_TEST_URL}
