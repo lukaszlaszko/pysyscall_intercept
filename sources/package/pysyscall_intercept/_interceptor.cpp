@@ -95,11 +95,11 @@ syscall_interceptor_context& syscall_interceptor_context::__enter__()
         if (callback_result.is_none())
             return false;
 
-        if (py::isinstance<bool>(callback_result))
+        if (py::isinstance<py::bool_>(callback_result))
             return callback_result.cast<bool>();
-        else if (py::isinstance<long>(callback_result))
+        else if (py::isinstance<py::int_>(callback_result))
         {
-            result = callback_result.cast<long>();
+            result = callback_result.cast<int>();
             return true;
         }
         else
