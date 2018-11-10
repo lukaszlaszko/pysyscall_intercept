@@ -79,6 +79,10 @@ class PackageInfo(object):
                 self.__fields[key.strip()] = value.strip()
 
     @property
+    def name(self):
+        return self.__fields['Name']
+
+    @property
     def version(self):
         return self.__fields['Version']
 
@@ -97,7 +101,7 @@ class PackageInfo(object):
 
 info = PackageInfo()
 setup(
-    name='pysyscall_intercept',
+    name=info.name,
     version=info.version,
     author=info.author,
     author_email=info.author_email,

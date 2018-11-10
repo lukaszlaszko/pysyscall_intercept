@@ -48,7 +48,7 @@ add_subdirectory(tests)
 # define package build targets
 add_custom_target(build-package
         COMMAND
-            tar -cvf ${CMAKE_BINARY_DIR}/pysyscall_intercept.tar
+            tar -cvf ${CMAKE_BINARY_DIR}/pysyscall-intercept-1.0.1.tar
                 sources
                 external
                 tests
@@ -57,5 +57,5 @@ add_custom_target(build-package
                 README.md
                 setup.py
                 PKG-INFO
-        COMMAND gzip ${CMAKE_BINARY_DIR}/pysyscall_intercept.tar
+        COMMAND gzip -f ${CMAKE_BINARY_DIR}/pysyscall-intercept-1.0.1.tar
         WORKING_DIRECTORY ${CMAKE_SOURCE_DIR})

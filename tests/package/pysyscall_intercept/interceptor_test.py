@@ -1,5 +1,6 @@
 from hamcrest import *
-from pysyscall_intercept import SysCallInterceptor, SYS_WRITE, SYS_OPEN
+from pysyscall_intercept import SysCallInterceptor, SYS_WRITE, SYS_OPEN, SYS_SENDTO
+from socket import socket, AF_INET, SOCK_DGRAM, EAGAIN
 
 
 def test_intercept__no_return():
@@ -69,6 +70,23 @@ def test_resuse_interceptor():
             f.write('test')
 
     assert_that(handler.count, is_(2))
+
+
+def test_modify_intercepted_return():
+    class Handler(object):
+        def __init__(self, error_code):
+            self.error_code = error_code
+
+        def on_syscall(self):
+            if self.error_code:
+                return self.error_code
+
+    s = socket(AF_INET, SOCK_DGRAM)
+
+    handler = Handler(-1 * EAGAIN)
+    with SysCallInterceptor(SYS_SENDTO, handler.on_syscall):
+        assert_that(calling(s.sendto).with_args(b'test', ('localhost', 5000)), raises(BlockingIOError))
+
 
 
 

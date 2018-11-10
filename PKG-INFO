@@ -1,6 +1,6 @@
 Metadata-Version: 1.0
 Name: pysyscall_intercept
-Version: 1.0.0
+Version: 1.0.1
 Summary: Python bindings for syscall_intercept
 Home-page: https://github.com/lukaszlaszko/pysyscall_intercept
 Author: Lukasz Laszko
