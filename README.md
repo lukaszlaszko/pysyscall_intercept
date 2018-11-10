@@ -1,5 +1,5 @@
 [![CircleCI](https://circleci.com/gh/lukaszlaszko/pysyscall_intercept.svg?style=svg)](https://circleci.com/gh/lukaszlaszko/pysyscall_intercept)
-[![PyPI version](https://badge.fury.io/py/pysyscall_intercept.svg)](https://badge.fury.io/py/pysyscall_intercept)
+[![image](https://img.shields.io/pypi/v/pysyscall-intercept.svg)](https://pypi.org/project/pysyscall-intercept/)
 
 ## Overview
 
